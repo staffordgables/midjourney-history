@@ -13,7 +13,7 @@ Just follow the instructions on creating your own Discord bot, and away you go.
 
 This bot will download all images; if the images are attachments in a message that has the text "Upscaled by" or "Image #" in the message body, they will be saved directly to the output folder. Along with the images, the corresponding message text is outputted to another folder to assist you in reconstructing your prompts should you so wish. Please remember, images have the job id imbedded in the name.
 
-Images are saved in a subdirectory off of the one in which the script resides named "output_discordchannelname_channelid"; prompts share the same name as the images and are located in the directory "message_text".
+Images are saved in a subdirectory off of the one in which the script resides named "output_discordchannelname_channelid"; prompts share the same name as the images and are located in the directory "message_text". A work directory has the same format, "input_discordchannelname_channelid" .
 
 Message the bot in whichever channel it is listening by sending a message to the channel.
 
