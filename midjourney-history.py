@@ -63,7 +63,7 @@ async def download_image(url, filename, output_folder, message):
     response = requests.get(url)
     if response.status_code == 200:
         # Define the input folder paths
-        input_folder = "input"
+        input_folder = f"input_{message.channel.name}_{message.channel.id}"
         output_folder = f"output_{message.channel.name}_{message.channel.id}"
 
         # Check if the output folder exists, and create it if necessary
@@ -87,10 +87,10 @@ async def download_image(url, filename, output_folder, message):
                 # Split the image
                 top_left, top_right, bottom_left, bottom_right = split_image(input_file)
                 # Save the output images with dynamic names in the output folder
-                top_left.save(os.path.join(output_folder, file_prefix + "_top_left.png"))
-                top_right.save(os.path.join(output_folder, file_prefix + "_top_right.png"))
-                bottom_left.save(os.path.join(output_folder, file_prefix + "_bottom_left.png"))
-                bottom_right.save(os.path.join(output_folder, file_prefix + "_bottom_right.png"))
+                top_left.save(os.path.join(output_folder, file_prefix + "_0.png"))
+                top_right.save(os.path.join(output_folder, file_prefix + "_1.png"))
+                bottom_left.save(os.path.join(output_folder, file_prefix + "_2.png"))
+                bottom_right.save(os.path.join(output_folder, file_prefix + "_3.png"))
             else:
                 try:
                     os.rename(f"{directory}/{input_folder}/{filename}", f"{directory}/{output_folder}/{filename}")
@@ -178,7 +178,7 @@ async def on_message(message):
             try:
                 response = requests.get(attachment.url)
                 if response.status_code == 200:
-                    input_folder = "input"
+                    input_folder = f"input_{message.channel.name}_{message.channel.id}"
                     output_folder = f"output_{message.channel.name}_{message.channel.id}"
                     if not os.path.exists(input_folder):
                         os.makedirs(input_folder)
@@ -190,10 +190,10 @@ async def on_message(message):
                     input_file = os.path.join(input_folder, attachment.filename)
                     file_prefix = os.path.splitext(attachment.filename)[0]
                     top_left, top_right, bottom_left, bottom_right = split_image(input_file)
-                    top_left.save(os.path.join(output_folder, file_prefix + "_top_left.png"))
-                    top_right.save(os.path.join(output_folder, file_prefix + "_top_right.png"))
-                    bottom_left.save(os.path.join(output_folder, file_prefix + "_bottom_left.png"))
-                    bottom_right.save(os.path.join(output_folder, file_prefix + "_bottom_right.png"))
+                    top_left.save(os.path.join(output_folder, file_prefix + "_0.png"))
+                    top_right.save(os.path.join(output_folder, file_prefix + "_1.png"))
+                    bottom_left.save(os.path.join(output_folder, file_prefix + "_2.png"))
+                    bottom_right.save(os.path.join(output_folder, file_prefix + "_3.png"))
                     os.remove(f"{directory}/{input_folder}/{attachment.filename}")
             except:
                 await asyncio.sleep(10)
