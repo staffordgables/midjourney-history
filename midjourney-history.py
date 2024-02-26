@@ -100,10 +100,21 @@ async def download_image(url, filename, output_folder, message):
              # Delete the input file if it exists
             if os.path.exists(f"{directory}/{input_folder}/{filename}"):
                 os.remove(f"{directory}/{input_folder}/{filename}")
+                
+            # Send a message to Discord indicating the local folder
+            # await message.channel.send(f"Image downloaded and processed: {filename} - Folder: {output_folder}")
 
         else:
             # Print a message indicating the file was skipped
             print(f"Skipped {filename} - already present in the output folder.")
+            # Send a message to Discord indicating the skip
+            await message.channel.send(f"Skipped {filename} - already present in the output folder.")
+            
+    else:
+        # Print a message indicating the file was skipped
+        print(f"Skipped {filename} - unable to download.")
+        # Send a message to Discord indicating the skip
+        await message.channel.send(f"Skipped {filename} - unable to download.")
 
 def split_image(image_file):
     with Image.open(image_file) as im:
